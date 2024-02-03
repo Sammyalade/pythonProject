@@ -22,4 +22,10 @@ class TestPhoneBook:
     def test_search_contact_number(self):
         my_phone_book = phone_book.PhoneBook()
         my_phone_book.save_contact("sammy", "07033675033")
-        assert my_phone_book.search_contact_with_number("07033675033") == ""
+        assert my_phone_book.search_contact_with_number("07033675033") == 'Contact : sammy, Number : 07033675033'
+
+    def test_update_contact(self):
+        my_phone_book = phone_book.PhoneBook()
+        my_phone_book.save_contact("sammy", "07033675033")
+        assert my_phone_book.update_contact("sammy", "07017097004") == 'Updated Contact sammy and Updated number 07017097004'
+
