@@ -15,12 +15,12 @@ class PhoneBook:
             return f'Updated Contact {name} and Updated number {phone}'
         return f"Contact doesn't exist"
 
-    def delete_contact(self, contact_name) -> str:
-        if contact_name in self.my_dict:
-            del self.my_dict[contact_name]
-            return f'Contact {contact_name} successfully deleted'
-        else:
-            return f'Contact {contact_name} not found'
+    def delete_contact(self, name) -> str:
+        if name in self.my_dict:
+            del self.my_dict[name]
+            return f'Contact {name} successfully deleted'
+
+        return f'Contact {name} not found'
 
     def search_contact_with_name(self, name) -> str:
         if name in self.my_dict:
