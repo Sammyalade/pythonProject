@@ -24,15 +24,13 @@ print(add_every_third_element(list1))
 
 def calculate_sum_of_last_middle_and_last_element(lists) -> int:
     total = 0
-    for number in range(len(lists)):
-        if number == 1:
-            total += lists[number - 1]
-        if len(lists) - number == number:
-            total += lists[number - 1]
-        if len(lists) - number == number + 1:
-            total += (lists[number + 1] + lists[number] / 2)
-        if len(lists) - number == 0:
-            total += lists[number - 1]
+    total += lists[0]
+    length_of_lists = len(lists)
+    if len(lists) % 2 == 0:
+        total += lists[length_of_lists / 2]
+    else:
+        total += (lists[length_of_lists // 2] + lists[(length_of_lists // 2) - 1]) / 2
+    total += lists[length_of_lists - 1]
 
     return total
 
