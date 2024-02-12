@@ -46,3 +46,7 @@ def find_intersection(set1, set2):
     if len(set_for_intersect) > 0:
         return set_for_intersect
     return None
+
+
+print(find_intersection({1, 3, 4, 6, 8, 9}, {1, 10, 16, 4, 6, 30}))
+print(find_intersection({1, 3, 4, 6, 8, 9}, {10, 16, 30}))

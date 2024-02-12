@@ -13,3 +13,8 @@ def test_sum_collection():
 def test_remove_item():
     assert task_two.remove_item({1, 3, 4, 6, 8, 9}, 9) == {1, 3, 4, 6, 8}
     assert task_two.remove_item({1, 3, 4, 6, 8, 9}, 15) is None
+
+
+def test_find_intersection():
+    assert task_two.find_intersection({1, 3, 4, 6, 8, 9}, {1, 10, 16, 4, 6, 30}) == {1, 4, 6}
+    assert task_two.find_intersection({1, 3, 4, 6, 8, 9}, {10, 16, 30}) is None
