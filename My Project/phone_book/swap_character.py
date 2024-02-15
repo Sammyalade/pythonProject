@@ -19,4 +19,12 @@ def swap_second_try(string_1, string_2):
     return string_2[:-1] + string_1[len(string_1) - 1::1] + ' ' + string_1[:-1] + string_2[len(string_2) - 1::1]
 
 
-print(swap_second_try("abc", "xyz"))
+print(swap_second_try("abc", "pqrstuvwxyz"))
+
+list1 = ['tee', 'dee', 'bee']
+
+variable = 'xyz'
+
+for number in range(3):
+    for letter in list1:
+        print(f'{number}: {letter}')
