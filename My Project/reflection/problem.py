@@ -1,7 +1,7 @@
 import type
 
 
-class Person:
+class Problem:
     name: str
     type: type
     isSolved: bool
