@@ -4,7 +4,7 @@ from decimal import Decimal
 class Account:
     def __init__(self, name, balance: Decimal):
         self.name = name
-        self.__balance = balance
+        self.balance = balance
 
     @property
     def balance(self):
@@ -12,14 +12,14 @@ class Account:
 
     @balance.setter
     def balance(self, balance):
-        if balance < Decimal(0.00):
+        if balance < 0.00:
             raise ValueError("Invalid Balance for balance")
         self.__balance = balance
 
     def __str__(self):
-        return f"Name: {self.name}, Balance: {self.__balance}"
+        return f"Name: {self.name}, Balance: {self.balance}"
 
 
-ai = Account("Dayone", Decimal(-10))
+ai = Account("Dayone", Decimal(10))
 
 print(ai)
