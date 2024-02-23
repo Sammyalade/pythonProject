@@ -1,4 +1,4 @@
-from account import Account
+from test.account_for_bank import Account
 
 
 class BankAccount:
@@ -30,8 +30,9 @@ class BankAccount:
         for account in self._account_list:
             if account.get_account_number() == sender:
                 account.withdraw(amount, pin)
-            elif account.get_account_number() == receiver:
-                account.deposit(receiver)
+        for account in self._account_list:
+            if account.get_account_number() == receiver:
+                account.deposit(amount)
 
     def remove_account(self, account_number):
         for account in self._account_list:
@@ -41,6 +42,8 @@ class BankAccount:
     def check_balance(self, account_number, pin):
         for account in self._account_list:
             if account.get_account_number() == account_number:
-                return account
+                return f"{account.check_balance(pin)}"
+
+
 
 

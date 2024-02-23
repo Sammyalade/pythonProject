@@ -1,11 +1,10 @@
-from account import Account
-import pytest
+from account_package import account_for_bank
 
 
 class TestAccount:
 
     def setup_method(self, method):
-        self.account: Account = Account("Abbey Elliot", "password")
+        self.account: account_for_bank.Account = account_for_bank.Account("Abbey Elliot", "password")
 
     def test_deposit_3k_balance_is_3k(self):
         self.account.deposit(3_000)

@@ -1,6 +1,4 @@
-from exception import InvalidPinError
-from exception import InsufficientFundError
-from exception import InvalidAmountError
+from exception import InvalidAmountError, InvalidPinError, InsufficientFundError
 
 
 class Account:
