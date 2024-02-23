@@ -21,7 +21,7 @@ class Account:
         self._is_valid_balance(amount)
         return self._balance - amount
 
-    def _is_valid_pin(self, pin):
+    def is_valid_pin(self, pin):
         if self.pin != pin:
             raise InvalidPinError("Invalid pin")
 
