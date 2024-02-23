@@ -1,4 +1,4 @@
-from test.account_for_bank import Account
+from account_for_bank import Account
 
 
 class BankAccount:
@@ -8,9 +8,7 @@ class BankAccount:
         self._account_list = []
         self.account_number_generator = 0
 
-    def register_account(self):
-        account_name = input("Enter your Full name: ")
-        pin = input("Enter your PIN: ")
+    def register_account(self, account_name, pin):
         self._account_list.append(Account(account_name, pin, self.account_number_generator + 1))
 
     def deposit(self, account_number, amount):
@@ -34,10 +32,12 @@ class BankAccount:
             if account.get_account_number() == receiver:
                 account.deposit(amount)
 
-    def remove_account(self, account_number):
+    def remove_account(self, account_number, pin):
         for account in self._account_list:
             if account.get_account_number() == account_number:
-                self._account_list.remove(account)
+                account.is_valid_pin(pin)
+                if account.get_account_number() == account_number:
+                    self._account_list.remove(account)
 
     def check_balance(self, account_number, pin):
         for account in self._account_list:
