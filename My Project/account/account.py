@@ -1,10 +1,11 @@
 from exception import InvalidPinError
 from exception import InsufficientFundError
+from exception import InvalidAmountError
 
 
 class Account:
 
-    def __init__(self, name: str, pin: str):
+    def __init__(self, name: str, pin: str, number: int):
         self.name = name
         self.pin = pin
         self._balance = 0
@@ -29,6 +30,13 @@ class Account:
     def _is_valid_balance(self, amount):
         if self._balance < amount:
             raise InsufficientFundError("Insufficient funds")
+
+    def _is_valid_amount(self, amount):
+        if amount < 0:
+            raise InvalidAmountError("Invalid amount")
+
+    def get_account_number(self):
+        return self.account_number
 
     def __str__(self):
         return f"Account Name: {self.name} Balance: {self._balance} Account Number: {self.account_number}"
