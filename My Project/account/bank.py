@@ -17,3 +17,30 @@ class BankAccount:
         for account in self._account_list:
             if account_number == account.get_account_number():
                 account.deposit(amount)
+
+    def withdraw(self, account_number, amount, pin):
+        for account in self._account_list:
+            if account_number == account.get_account_number():
+                account.withdraw(amount, pin)
+
+    def get_number_of_accounts(self):
+        return len(self._account_list)
+
+    def transfer(self, sender, receiver, amount, pin):
+        for account in self._account_list:
+            if account.get_account_number() == sender:
+                account.withdraw(amount, pin)
+            elif account.get_account_number() == receiver:
+                account.deposit(receiver)
+
+    def remove_account(self, account_number):
+        for account in self._account_list:
+            if account.get_account_number() == account_number:
+                self._account_list.remove(account)
+
+    def check_balance(self, account_number, pin):
+        for account in self._account_list:
+            if account.get_account_number() == account_number:
+                return account
+
+
