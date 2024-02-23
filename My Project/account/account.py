@@ -9,7 +9,7 @@ class Account:
         self.name = name
         self.pin = pin
         self._balance = 0
-        self.account_number = None
+        self._account_number = None
 
     def deposit(self, amount: int):
         self._balance += amount
