@@ -1,5 +1,4 @@
 from gun import Gun
-import unittest
 
 
 class TestGun:
