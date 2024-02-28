@@ -9,7 +9,7 @@ class Account:
         self.name = name
         self.pin = pin
         self._balance = 0
-        self._account_number = 0
+        self._account_number = number
 
     def deposit(self, amount: int):
         self._is_valid_amount(amount)
