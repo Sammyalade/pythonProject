@@ -1,6 +1,9 @@
 import tkinter as ak
 from tkinter import simpledialog, messagebox
 from account_package.bank import BankAccount
+from account_package.exception.InsufficientFundError import InsufficientFundError
+from account_package.exception.InvalidAmountError import InvalidAmountError
+from account_package.exception.InvalidPinError import InvalidPinError
 
 
 class BankApp:
@@ -48,50 +51,85 @@ class BankApp:
         first_name = simpledialog.askstring("Bank App", "Enter your first name:")
         last_name = simpledialog.askstring("Bank App", "Enter your Last Name:")
         pin = simpledialog.askstring("Bank App", "Set your pin:")
-        try:
-            self.bank.register_account(first_name + " " + last_name, pin)
-            messagebox.showinfo("Bank App", "Account successfully registered")
-        except BaseException as e:
-            messagebox.showerror(e.)
+        self.bank.register_account(first_name + " " + last_name, pin)
+        messagebox.showinfo("Bank App", "Account successfully registered")
         self.main_menu()
 
     def deposit_money(self):
         account_number = simpledialog.askstring("Bank App", "Enter your account number:")
         amount = simpledialog.askstring("Bank App", "Enter the amount to deposit:")
         self.bank.deposit(account_number, amount)
-        messagebox.showinfo("Bank App", "Deposit success")
-        self.main_menu()
+        try:
+            messagebox.showinfo("Bank App", "Deposit success")
+        except InvalidAmountError as e:
+            messagebox.showinfo(e.__str__())
+        except Exception as e:
+            messagebox.showinfo("Please try again")
+        finally:
+            self.main_menu()
 
     def withdraw_money(self):
         account_number = simpledialog.askstring("Bank App", "Enter your account number:")
         amount = simpledialog.askstring("Bank App", "Enter the amount to withdraw:")
         pin = simpledialog.askstring("Bank App", "Enter your pin:")
-        self.bank.withdraw(account_number, amount, pin)
-        messagebox.showinfo("Bank App", "Withdraw successful")
-        self.main_menu()
+        try:
+            self.bank.withdraw(account_number, amount, pin)
+            messagebox.showinfo("Bank App", "Withdraw successful")
+        except InvalidAmountError as e:
+            messagebox.showerror(e.__str__())
+        except InvalidPinError as e:
+            messagebox.showinfo(e.__str__())
+        except InsufficientFundError as e:
+            messagebox.showinfo(e.__str__())
+        except Exception as e:
+            messagebox.showinfo("Please try again")
+        finally:
+            self.main_menu()
 
     def transfer_money(self):
         sender = simpledialog.askstring("Bank App", "Enter your account number:")
         receiver = simpledialog.askstring("Bank App", "Enter your receiver account number:")
         amount = simpledialog.askstring("Bank App", "Enter the amount to transfer:")
         pin = simpledialog.askstring("Bank App", "Enter your pin:")
-        self.bank.transfer(sender, receiver, amount, pin)
-        messagebox.showinfo("Bank App", "Transfer successful")
-        self.main_menu()
+        try:
+            self.bank.transfer(sender, receiver, amount, pin)
+            messagebox.showinfo("Bank App", "Transfer successful")
+        except InvalidAmountError as e:
+            messagebox.showerror(e.__str__())
+        except InvalidPinError as e:
+            messagebox.showinfo(e.__str__())
+        except InsufficientFundError as e:
+            messagebox.showinfo(e.__str__())
+        except Exception as e:
+            messagebox.showinfo("Please try again")
+        finally:
+            self.main_menu()
 
     def check_balance(self):
         account_number = simpledialog.askstring("Bank App", "Enter your account number:")
         pin = simpledialog.askstring("Bank App", "Enter your pin:")
         balance = self.bank.check_balance(account_number, pin)
-        messagebox.showinfo("Bank App", f"Balance is {balance}")
-        self.main_menu()
+        try:
+            messagebox.showinfo("Bank App", f"Balance is {balance}")
+        except InvalidPinError as e:
+            messagebox.showinfo(e.__str__())
+        except Exception as e:
+            messagebox.showinfo("Please try again")
+        finally:
+            self.main_menu()
 
     def close_account(self):
         account_number = simpledialog.askstring("Bank App", "Enter your account number:")
         pin = simpledialog.askstring("Bank App", "Enter your pin:")
-        self.bank.remove_account(account_number, pin)
-        messagebox.showinfo("Bank App", "Account closed")
-        self.main_menu()
+        try:
+            self.bank.remove_account(account_number, pin)
+            messagebox.showinfo("Bank App", "Account closed")
+        except InvalidPinError as e:
+            messagebox.showinfo(e.__str__())
+        except Exception as e:
+            messagebox.showinfo("Please try again")
+        finally:
+            self.main_menu()
 
     def exit_app(self):
         exit(0)
