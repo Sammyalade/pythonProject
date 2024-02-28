@@ -1,0 +1,50 @@
+from diary.entry import Entry
+from diary.exception.dairy_is_empty_error import DiaryIsEmptyError
+from diary.exception.diary_is_locked_exception import DiaryIsLockedError
+from diary.exception.entry_does_not_exist_error import EntryDoesNotExistError
+
+
+class Diary:
+    def __init__(self):
+        self.entries = []
+        self.number_of_entries = 0
+        self.is_locked = False
+
+    def lock_diary(self):
+        self.is_locked = True
+
+    def unlock_diary(self):
+        self.is_locked = False
+
+    def create_entry(self, title, body):
+        if self.is_locked:
+            raise DiaryIsLockedError
+        else:
+            self.number_of_entries += 1
+            self.entries.append(Entry(self.number_of_entries, "First Entry", "This is my first entry"))
+
+    def delete_entry(self):
+        if self.is_locked:
+            raise DiaryIsLockedError
+        elif self.number_of_entries == 0:
+            raise DiaryIsEmptyError
+        else:
+            self.number_of_entries -= 1
+
+    def find_entry(self, id):
+        if self.number_of_entries == 0:
+            raise DiaryIsEmptyError
+        else:
+            for entry in self.entries:
+                if entry.get_id() is id:
+                    return entry
+        raise EntryDoesNotExistError
+
+    def update_entry(self, id, title, body):
+        if self.is_locked:
+            raise DiaryIsLockedError
+        else:
+            old_entry = self.find_entry(id)
+            new_entry = Entry(id, title, body)
+            self.entries.remove(old_entry)
+            self.entries.append(new_entry)
