@@ -1,7 +1,6 @@
 import pytest
 
 from account_package import account_for_bank
-from exception.InvalidAmountError import InvalidAmountError
 
 
 class TestAccount:
