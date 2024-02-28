@@ -23,13 +23,12 @@ class BankApp:
             4. Transfer Money
             5. Check Balance
             6. Close Account
-            7. Exit App
+            7. Display Account Details
+            8. Exit App
         """)
 
         if response is not None:
             self.match_case(response)
-
-        root.destroy()
 
     def match_case(self, response):
         if response == '1':
@@ -45,6 +44,8 @@ class BankApp:
         elif response == '6':
             self.close_account()
         elif response == '7':
+            self.display_account()
+        elif response == '8':
             self.exit_app()
 
     def open_account(self):
@@ -130,6 +131,10 @@ class BankApp:
             messagebox.showinfo("Please try again")
         finally:
             self.main_menu()
+
+    def display_account(self):
+        account_number = simpledialog.askstring("Bank App", "Enter your account number:")
+        return bank_app.bank.display_account(account_number)
 
     def exit_app(self):
         exit(0)
