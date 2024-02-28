@@ -6,10 +6,13 @@ class BankAccount:
     def __init__(self, name):
         self.name = name
         self._account_list = []
-        self.account_number_generator = 0
+
+    def generate_account_number(self):
+        account_number = len(self._account_list) + 1
+        return account_number
 
     def register_account(self, account_name, pin):
-        self._account_list.append(Account(account_name, pin, self.account_number_generator + 1))
+        self._account_list.append(Account(account_name, pin, self.generate_account_number()))
 
     def deposit(self, account_number, amount):
         account = self.__find_account(account_number)
@@ -42,6 +45,10 @@ class BankAccount:
     def check_balance(self, account_number, pin):
         account = self.__find_account(account_number)
         return f"{account.check_balance(pin)}"
+
+    def display_account(self, account_number):
+        account = self.__find_account(account_number)
+        return account.__str__()
 
 
 
