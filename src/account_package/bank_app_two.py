@@ -44,8 +44,6 @@ class BankApp:
         elif response == '6':
             self.close_account()
         elif response == '7':
-            self.display_account()
-        elif response == '8':
             self.exit_app()
 
     def open_account(self):
@@ -133,8 +131,7 @@ class BankApp:
             self.main_menu()
 
     def display_account(self):
-        account_number = simpledialog.askstring("Bank App", "Enter your account number:")
-        return bank_app.bank.display_account(account_number)
+        return bank_app.bank.display_account()
 
     def exit_app(self):
         exit(0)
