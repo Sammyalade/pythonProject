@@ -1,4 +1,4 @@
-from exception import InvalidAmountError, InvalidPinError, InsufficientFundError
+from account_package.exception import InsufficientFundError
 
 
 class Account:
@@ -7,7 +7,7 @@ class Account:
         self.name = name
         self.pin = pin
         self._balance = 0
-        self._account_number = None
+        self._account_number = 0
 
     def deposit(self, amount: int):
         self._is_valid_amount(amount)
@@ -24,7 +24,6 @@ class Account:
 
     def is_valid_pin(self, pin) -> bool:
         return self.pin == pin
-
 
     def _is_valid_balance(self, amount):
         if self._balance < amount:
