@@ -1,4 +1,6 @@
 from account_package.exception import InsufficientFundError
+from account_package.exception.InvalidAmountError import InvalidAmountError
+from account_package.exception.InvalidPinError import InvalidPinError
 
 
 class Account:
@@ -22,8 +24,9 @@ class Account:
             return 'Insufficient funds'
         return self._balance - amount
 
-    def is_valid_pin(self, pin) -> bool:
-        return self.pin == pin
+    def is_valid_pin(self, pin):
+        if self.pin != pin:
+            raise InvalidPinError
 
     def _is_valid_balance(self, amount):
         if self._balance < amount:
@@ -32,7 +35,7 @@ class Account:
     @staticmethod
     def _is_valid_amount(amount):
         if amount < 0:
-            raise ValueError("Invalid amount")
+            raise InvalidAmountError
 
     def get_account_number(self):
         return self._account_number
