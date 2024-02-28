@@ -1,4 +1,4 @@
-import tkinter as tk
+import tkinter as ak
 from tkinter import simpledialog, messagebox
 from account_package.bank import BankAccount
 
@@ -9,8 +9,8 @@ class BankApp:
         self.bank = BankAccount("Trust Bank")
 
     def main_menu(self):
-        root = tk.Tk()
-        root.withdraw()  # Hide the main window
+        root = ak.Tk()
+        root.withdraw()
 
         response = simpledialog.askstring("Bank App", """
             Welcome to Trust Bank
@@ -26,7 +26,7 @@ class BankApp:
         if response is not None:
             self.match_case(response)
 
-        root.destroy()  # Close the Tkinter window
+        root.destroy()
 
     def match_case(self, response):
         if response == '1':
@@ -48,8 +48,11 @@ class BankApp:
         first_name = simpledialog.askstring("Bank App", "Enter your first name:")
         last_name = simpledialog.askstring("Bank App", "Enter your Last Name:")
         pin = simpledialog.askstring("Bank App", "Set your pin:")
-        self.bank.register_account(first_name + " " + last_name, pin)
-        messagebox.showinfo("Bank App", "Account successfully registered")
+        try:
+            self.bank.register_account(first_name + " " + last_name, pin)
+            messagebox.showinfo("Bank App", "Account successfully registered")
+        except BaseException as e:
+            messagebox.showerror(e.)
         self.main_menu()
 
     def deposit_money(self):
