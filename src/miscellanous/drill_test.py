@@ -1,4 +1,4 @@
-import drill
+from miscellanous import drill
 
 
 class TestDrill:
