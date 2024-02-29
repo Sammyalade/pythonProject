@@ -1,4 +1,5 @@
-from account_for_bank import Account
+from account_package import account_for_bank
+from account_package.account_for_bank import Account
 
 
 class BankAccount:
@@ -17,13 +18,16 @@ class BankAccount:
 
     def deposit(self, account_number, amount):
         account = self.__find_account(account_number)
-        account.deposit(amount)
+        if account is None:
+            raise ValueError(f"Account number not found")
+        else:
+            account.deposit(amount)
 
     def __find_account(self, account_number):
         for account in self._account_list:
-            if account_number == account.get_account_number():
+            if account.get_account_number() == account_number:
                 return account
-        raise ValueError(f"Account number {account_number} not found")
+        return None
 
     def withdraw(self, account_number, amount, pin):
         account = self.__find_account(account_number)
@@ -40,9 +44,11 @@ class BankAccount:
 
     def remove_account(self, account_number, pin):
         account = self.__find_account(account_number)
-        account.is_valid_pin(pin)
-        self._account_list.remove(account)
+        if not account.is_valid_pin(pin):
+            Account.raise_invalid_pin_error()
+        else:
+            self._account_list.remove(account)
 
     def check_balance(self, account_number, pin):
         account = self.__find_account(account_number)
-        return f"{account.check_balance(pin)}"
+        return account.check_balance(pin)
