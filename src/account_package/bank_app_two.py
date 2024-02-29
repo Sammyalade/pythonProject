@@ -16,6 +16,7 @@ class BankApp:
         root.withdraw()
 
         response = simpledialog.askstring("Bank App", """
+           ************************
             Welcome to Trust Bank
             1. Open Account
             2. Deposit Money
@@ -24,6 +25,7 @@ class BankApp:
             5. Check Balance
             6. Close Account
             7. Exit App
+           ************************
         """)
 
         if response is not None:
