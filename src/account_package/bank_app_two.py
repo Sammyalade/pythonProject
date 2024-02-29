@@ -23,8 +23,7 @@ class BankApp:
             4. Transfer Money
             5. Check Balance
             6. Close Account
-            7. Display Account Details
-            8. Exit App
+            7. Exit App
         """)
 
         if response is not None:
@@ -55,8 +54,8 @@ class BankApp:
         self.main_menu()
 
     def deposit_money(self):
-        account_number = simpledialog.askstring("Bank App", "Enter your account number:")
-        amount = simpledialog.askstring("Bank App", "Enter the amount to deposit:")
+        account_number = simpledialog.askinteger("Bank App", "Enter your account number:")
+        amount = simpledialog.askinteger("Bank App", "Enter the amount to deposit:")
         self.bank.deposit(account_number, amount)
         try:
             messagebox.showinfo("Bank App", "Deposit success")
@@ -68,8 +67,8 @@ class BankApp:
             self.main_menu()
 
     def withdraw_money(self):
-        account_number = simpledialog.askstring("Bank App", "Enter your account number:")
-        amount = simpledialog.askstring("Bank App", "Enter the amount to withdraw:")
+        account_number = simpledialog.askinteger("Bank App", "Enter your account number:")
+        amount = simpledialog.askinteger("Bank App", "Enter the amount to withdraw:")
         pin = simpledialog.askstring("Bank App", "Enter your pin:")
         try:
             self.bank.withdraw(account_number, amount, pin)
@@ -86,9 +85,9 @@ class BankApp:
             self.main_menu()
 
     def transfer_money(self):
-        sender = simpledialog.askstring("Bank App", "Enter your account number:")
-        receiver = simpledialog.askstring("Bank App", "Enter your receiver account number:")
-        amount = simpledialog.askstring("Bank App", "Enter the amount to transfer:")
+        sender = simpledialog.askinteger("Bank App", "Enter your account number:")
+        receiver = simpledialog.askinteger("Bank App", "Enter your receiver account number:")
+        amount = simpledialog.askinteger("Bank App", "Enter the amount to transfer:")
         pin = simpledialog.askstring("Bank App", "Enter your pin:")
         try:
             self.bank.transfer(sender, receiver, amount, pin)
@@ -105,7 +104,7 @@ class BankApp:
             self.main_menu()
 
     def check_balance(self):
-        account_number = simpledialog.askstring("Bank App", "Enter your account number:")
+        account_number = simpledialog.askinteger("Bank App", "Enter your account number:")
         pin = simpledialog.askstring("Bank App", "Enter your pin:")
         balance = self.bank.check_balance(account_number, pin)
         try:
@@ -118,7 +117,7 @@ class BankApp:
             self.main_menu()
 
     def close_account(self):
-        account_number = simpledialog.askstring("Bank App", "Enter your account number:")
+        account_number = simpledialog.askinteger("Bank App", "Enter your account number:")
         pin = simpledialog.askstring("Bank App", "Enter your pin:")
         try:
             self.bank.remove_account(account_number, pin)
@@ -129,9 +128,6 @@ class BankApp:
             messagebox.showinfo("Please try again")
         finally:
             self.main_menu()
-
-    def display_account(self):
-        return bank_app.bank.display_account()
 
     def exit_app(self):
         exit(0)
