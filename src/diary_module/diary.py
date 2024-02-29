@@ -1,7 +1,7 @@
-from diary.entry import Entry
-from diary.exception.dairy_is_empty_error import DiaryIsEmptyError
-from diary.exception.diary_is_locked_exception import DiaryIsLockedError
-from diary.exception.entry_does_not_exist_error import EntryDoesNotExistError
+from diary_module.entry import (Entry)
+from diary_module.exception.dairy_is_empty_error import DiaryIsEmptyError
+from diary_module.exception.diary_is_locked_exception import DiaryIsLockedError
+from diary_module.exception.entry_does_not_exist_error import EntryDoesNotExistError
 
 
 class Diary:
