@@ -19,3 +19,9 @@ class TestSevenSegmentDisplay:
         obj = seven_segment_display.SevenSegmentDisplay("10001122")
         with pytest.raises(ValueError):
             obj.put_in_a_list()
+
+    def test_horizontal_print(self):
+        obj = seven_segment_display.SevenSegmentDisplay("11010101")
+        assert obj.print_horizontal() == "*  *  *  *"
+
+
