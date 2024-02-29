@@ -35,7 +35,7 @@ class SevenSegmentDisplay:
             if number not in ['0', '1']:
                 raise ValueError(f"Character at {self.count} is invalid")
         if len(my_list) > 8 or len(my_list) < 8:
-            raise RuntimeError("Input should not be more than or less than 7 numbers")
+            raise RuntimeError("Input should not be more than or less than 8 numbers")
         return my_list
 
     def print(self):
@@ -61,5 +61,5 @@ class SevenSegmentDisplay:
 
 
 if __name__ == '__main__':
-    segment = SevenSegmentDisplay("00011111")
+    segment = SevenSegmentDisplay("11111")
     segment.print()
