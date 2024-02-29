@@ -106,3 +106,11 @@ class TestDiary:
         my_diary.delete_entry()
         with pytest.raises(EntryDoesNotExistError):
             my_diary.find_entry(1)
+
+   # def test_delete_entry_that_does_not_exist_throws_entry_does_not_exist_exception(self):
+    #    my_diary = diary.Diary()
+     #   my_diary.create_entry("First Entry", "This is first entry")
+      #  my_diary.create_entry("Second Entry", "This is my second entry")
+       # my_diary.delete_entry()
+        #with pytest.raises(EntryDoesNotExistError):
+          #  my_diary.find_entry(1)
