@@ -38,7 +38,7 @@ class Gun:
     def toggle_cock_gun(self):
         self.cock = not self.cock
 
-    def __str__(self):
+    def __repr__(self):
         return f'{self.model} - {self.serial_no} - {self.owner} - {self.manufacturer} - {self.capacity}'
 
 
