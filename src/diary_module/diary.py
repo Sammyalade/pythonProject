@@ -23,12 +23,13 @@ class Diary:
             self.number_of_entries += 1
             self.entries.append(Entry(self.number_of_entries, "First Entry", "This is my first entry"))
 
-    def delete_entry(self):
+    def delete_entry(self, id):
         if self.is_locked:
             raise DiaryIsLockedError
         elif self.number_of_entries == 0:
             raise DiaryIsEmptyError
         else:
+            self.entries.remove(self.find_entry(id))
             self.number_of_entries -= 1
 
     def find_entry(self, id):
