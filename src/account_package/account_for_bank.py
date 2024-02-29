@@ -12,36 +12,42 @@ class Account:
         self._account_number = number
 
     def deposit(self, amount: int):
-        self._is_valid_amount(amount)
-        self._balance += amount
+        if not self._is_valid_amount(amount):
+            raise InvalidAmountError("Invalid amount")
+        else:
+            self._balance += amount
 
     def check_balance(self, pin: str):
-        self.is_valid_pin(pin)
+        if not self.is_valid_pin(pin):
+            self.raise_invalid_pin_error()
         return self._balance
 
+    @staticmethod
+    def raise_invalid_pin_error():
+        raise InvalidPinError
+
     def withdraw(self, amount: int, pin: str):
-        if self._is_valid_balance(amount) or self.is_valid_pin(pin):
-            return 'Insufficient funds'
-        return self._balance - amount
+        if not self.is_valid_pin(pin):
+            self.raise_invalid_pin_error()
+        elif not self._is_valid_balance(amount):
+            raise ValueError("Insufficient balance")
+        elif amount < 0:
+            raise ValueError("Negative amount")
+        else:
+            self._balance -= amount
 
     def is_valid_pin(self, pin):
-        if self.pin != pin:
-            raise InvalidPinError
+        return self.pin == pin
 
     def _is_valid_balance(self, amount):
-        if self._balance < amount:
-            raise InsufficientFundError
+        return self._balance > amount
 
     @staticmethod
-    def _is_valid_amount(amount):
-        if amount < 0:
-            raise InvalidAmountError
+    def _is_valid_amount(amount: int):
+        return amount > 0
 
     def get_account_number(self):
         return self._account_number
 
-    def return_account_number(self):
-        return self._account_number
-
-    def __str__(self):
+    def __repr__(self):
         return f"Account Name: {self.name} Balance: {self._balance} Account Number: {self._account_number}"
