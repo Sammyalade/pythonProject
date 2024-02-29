@@ -40,38 +40,44 @@ class BankApp:
         last_name = input("Enter your Last Name: ")
         pin = input("Set your pin: ")
         self.bank.register_account(first_name + " " + last_name, pin)
-        return f"Account successfully registered"
+        print(f"Account successfully registered")
+        self.main_menu()
 
     def deposit_money(self):
-        account_number = input("Enter your account number: ")
-        amount = input("Enter the amount to deposit")
+        account_number = int(input("Enter your account number: "))
+        amount = int(input("Enter the amount to deposit"))
         self.bank.deposit(account_number, amount)
-        return f"Deposit success"
+        print(f"Deposit success")
+        self.main_menu()
 
     def withdraw_money(self):
-        account_number = input("Enter your account number: ")
+        account_number = int(input("Enter your account number: "))
         amount = input("Enter the amount to withdraw")
         pin = input("Enter your pin: ")
         self.bank.withdraw(account_number, amount, pin)
-        return f"Withdraw successful"
+        print(f"Withdraw successful")
+        self.main_menu()
 
     def transfer_money(self):
-        sender = input("Enter your account number: ")
-        receiver = input("Enter your receiver account number: ")
+        sender = int(input("Enter your account number: "))
+        receiver = int(input("Enter your receiver account number: "))
         amount = input("Enter the amount to transfer")
         pin = input("Enter your pin: ")
         self.bank.transfer(sender, receiver, amount, pin)
-        return f"Transfer successful"
+        print(f"Transfer successful")
+        self.main_menu()
 
     def check_balance(self):
-        account_number = input("Enter your account number: ")
+        account_number = int(input("Enter your account number: "))
         pin = input("Enter your pin: ")
-        return f"Balance is {self.bank.check_balance(account_number, pin)}"
+        print(f"Balance is {self.bank.check_balance(account_number, pin)}")
+        self.main_menu()
 
     def close_account(self):
-        account_number = input("Enter your account number: ")
+        account_number = int(input("Enter your account number: "))
         pin = input("Enter your pin: ")
         self.bank.remove_account(account_number, pin)
+        self.main_menu()
 
     def exit_app(self):
         exit(0)
