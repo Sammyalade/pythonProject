@@ -34,6 +34,8 @@ class SevenSegmentDisplay:
             self.count += 1
             if number not in ['0', '1']:
                 raise ValueError(f"Character at {self.count} is invalid")
+        if len(my_list) > 7 or len(my_list) < 7:
+            raise RuntimeError("Input should not be more than or less than 7 numbers")
         return my_list
 
     def print(self):
