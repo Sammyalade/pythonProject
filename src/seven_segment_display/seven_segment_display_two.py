@@ -1,4 +1,4 @@
-class SevenSegmentDisplay:
+class SevenSegmentDisplayTwo:
 
     def __init__(self, number_segment: str):
         self.count = 0
@@ -7,17 +7,17 @@ class SevenSegmentDisplay:
 
     @staticmethod
     def print_horizontal():
-        print("*  *  *  *")
+        horizontal = "*  *  *  *"
 
     @staticmethod
     def print_vertical_left():
-        print("*")
-        print("*")
-        print("*")
+        vertical  1 = "*"
+        vertical2 = "*"
+        vertical3 = "*"
 
     @staticmethod
     def print_vertical_right():
-        print("         *")
+        "         *")
         print("         *")
         print("         *")
 
@@ -61,5 +61,5 @@ class SevenSegmentDisplay:
 
 
 if __name__ == '__main__':
-    segment = SevenSegmentDisplay("11110111")
+    segment = SevenSegmentDisplayTwo("11110111")
     segment.print()
