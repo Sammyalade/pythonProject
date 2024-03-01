@@ -25,6 +25,16 @@ class Complex:
     def __le__(self, other):
         return self.left <= other.left and self.right <= other.right
 
+    def __iadd__(self, other):
+        self.left += other.left
+        self.right += other.right
+        return self
+
+    def __isub__(self, other):
+        self.left -= other.left
+        self.right -= other.right
+        return self
+
     def __repr__(self):
         return f"{self.left}j {"+" if self.right > 0 else "-"} {abs(self.right)}i"
 
@@ -42,4 +52,8 @@ print(x > y)
 print(x < y)
 print(x >= y)
 print(x <= y)
-
+x += y
+print(x)
+x = Complex(2, 8)
+x -= y
+print(x)
