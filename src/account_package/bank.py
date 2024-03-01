@@ -52,3 +52,9 @@ class BankAccount:
     def check_balance(self, account_number, pin):
         account = self.__find_account(account_number)
         return account.check_balance(pin)
+
+    def find_account_by_name(self, account_name):
+        for account in self._account_list:
+            if account.get_name == account_name:
+                return account
+        raise RuntimeError("No such account")
