@@ -23,8 +23,9 @@ class BankApp:
             3. Withdraw Money
             4. Transfer Money
             5. Check Balance
-            6. Close Account
-            7. Exit App
+            6. Check Account Details
+            7. Close Account
+            8. Exit App
            ************************
         """)
 
@@ -32,32 +33,35 @@ class BankApp:
             self.match_case(response)
 
     def match_case(self, response):
-        if response == '1':
-            self.open_account()
-        elif response == '2':
-            self.deposit_money()
-        elif response == '3':
-            self.withdraw_money()
-        elif response == '4':
-            self.transfer_money()
-        elif response == '5':
-            self.check_balance()
-        elif response == '6':
-            self.close_account()
-        elif response == '7':
-            self.exit_app()
+        match response:
+            case '1':
+                self.open_account()
+            case '2':
+                self.deposit_money()
+            case '3':
+                self.withdraw_money()
+            case '4':
+                self.transfer_money()
+            case '5':
+                self.check_balance()
+            case '6':
+                self.find_account()
+            case '7':
+                self.close_account()
+            case '8':
+                self.exit_app()
 
     def open_account(self):
-        first_name = simpledialog.askstring("Bank App", "Enter your first name:")
-        last_name = simpledialog.askstring("Bank App", "Enter your Last Name:")
-        pin = simpledialog.askstring("Bank App", "Set your pin:")
+        first_name = simpledialog.askstring("Bank App", "Enter your first name: ")
+        last_name = simpledialog.askstring("Bank App", "Enter your Last Name: ")
+        pin = simpledialog.askstring("Bank App", "Set your pin: ")
         self.bank.register_account(first_name + " " + last_name, pin)
         messagebox.showinfo("Bank App", "Account successfully registered")
         self.main_menu()
 
     def deposit_money(self):
-        account_number = simpledialog.askinteger("Bank App", "Enter your account number:")
-        amount = simpledialog.askinteger("Bank App", "Enter the amount to deposit:")
+        account_number = simpledialog.askinteger("Bank App", "Enter your account number: ")
+        amount = simpledialog.askinteger("Bank App", "Enter the amount to deposit: ")
         self.bank.deposit(account_number, amount)
         try:
             messagebox.showinfo("Bank App", "Deposit success")
@@ -130,6 +134,10 @@ class BankApp:
             messagebox.showinfo("Please try again")
         finally:
             self.main_menu()
+
+    def find_account(self):
+        account_name = simpledialog.askstring("BankApp", "Enter your account name(FirstName, space and LastName: ")
+        messagebox.showinfo(self.bank.find_account_by_name(account_name))
 
     def exit_app(self):
         exit(0)
