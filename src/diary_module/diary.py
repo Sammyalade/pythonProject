@@ -44,6 +44,8 @@ class Diary:
     def update_entry(self, id, title, body):
         if self.is_locked:
             raise DiaryIsLockedError
+        elif self.number_of_entries == 0:
+            raise EntryDoesNotExistError
         else:
             old_entry = self.find_entry(id)
             new_entry = Entry(id, title, body)
