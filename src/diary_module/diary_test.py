@@ -35,7 +35,7 @@ class TestDiary:
         my_diary = diary.Diary()
         my_diary.create_entry("First Entry", "This is my first entry")
 
-        my_diary.delete_entry()
+        my_diary.delete_entry(1)
 
         assert my_diary.number_of_entries == 0
 
@@ -53,7 +53,7 @@ class TestDiary:
         my_diary.lock_diary()
 
         with pytest.raises(DiaryIsLockedError):
-            my_diary.delete_entry()
+            my_diary.delete_entry(1)
 
     def test_add_entry_find_entry_when_diary_is_unlocked_returns_entry(self):
         my_diary = diary.Diary()
@@ -84,7 +84,7 @@ class TestDiary:
         my_diary = diary.Diary()
 
         with pytest.raises(DiaryIsEmptyError):
-            my_diary.delete_entry()
+            my_diary.delete_entry(1)
 
     def test_find_entry_when_entry_is_empty_throws_entry_is_empty_exception(self):
         my_diary = diary.Diary()
@@ -103,14 +103,26 @@ class TestDiary:
         my_diary = diary.Diary()
         my_diary.create_entry("First Entry", "This is first entry")
         my_diary.create_entry("Second Entry", "This is my second entry")
-        my_diary.delete_entry()
+        my_diary.delete_entry(1)
         with pytest.raises(EntryDoesNotExistError):
             my_diary.find_entry(1)
 
-   # def test_delete_entry_that_does_not_exist_throws_entry_does_not_exist_exception(self):
-    #    my_diary = diary.Diary()
-     #   my_diary.create_entry("First Entry", "This is first entry")
-      #  my_diary.create_entry("Second Entry", "This is my second entry")
-       # my_diary.delete_entry()
-        #with pytest.raises(EntryDoesNotExistError):
-          #  my_diary.find_entry(1)
+    def test_delete_entry_find_entry_that_does_not_exist_throws_entry_does_not_exist_exception(self):
+        my_diary = diary.Diary()
+        my_diary.create_entry("First Entry", "This is first entry")
+        my_diary.create_entry("Second Entry", "This is my second entry")
+        my_diary.delete_entry(1)
+        with pytest.raises(EntryDoesNotExistError):
+            my_diary.find_entry(1)
+
+    def test_update_entry_when_list_is_empty_throws_entry_is_empty(self):
+        my_diary = diary.Diary()
+        with pytest.raises(EntryDoesNotExistError):
+            my_diary.update_entry(1, "First Entry", "This is my updated entry")
+
+    def test_update_entry_not_in_the_diary_throws_entry_is_empty(self):
+        my_diary = diary.Diary()
+        my_diary.create_entry("First Entry", "This is my first entry")
+        with pytest.raises(EntryDoesNotExistError):
+            my_diary.update_entry(2, "Second Entry", "This is my updated entry")
+
