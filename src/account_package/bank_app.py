@@ -13,8 +13,9 @@ class BankApp:
         3. Withdraw Money
         4. Transfer Money
         5. Check Balance
-        6. Close Account
-        7. Exit App
+        6. Check Acount Details
+        7. Close Account
+        8. Exit App
         """)
         self.match_case(response)
 
@@ -31,8 +32,10 @@ class BankApp:
             case '5':
                 self.check_balance()
             case '6':
-                self.close_account()
+                self.find_account()
             case '7':
+                self.close_account()
+            case '8':
                 self.exit_app()
 
     def open_account(self):
@@ -81,6 +84,10 @@ class BankApp:
 
     def exit_app(self):
         exit(0)
+
+    def find_account(self):
+        account_name = input("Enter your account name(FirstName, space and LastName: ")
+        print(self.bank.check_account_details(account_name))
 
 
 if __name__ == "__main__":
