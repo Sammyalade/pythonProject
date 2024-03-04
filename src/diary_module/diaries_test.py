@@ -9,4 +9,3 @@ class DiariesTest:
     def test_add_diary_diary_is_added(self):
         self.diaries.add("username", "password")
         assert self.diaries.getNumberOfDiaries() == 1
-
