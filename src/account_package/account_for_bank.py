@@ -1,9 +1,18 @@
-from account_package.exception import InsufficientFundError
 from account_package.exception.InvalidAmountError import InvalidAmountError
 from account_package.exception.InvalidPinError import InvalidPinError
 
 
 class Account:
+
+    """This class represents a bank account
+    >>> account = Account('praise', '1234', 123)
+    >>> account.name
+    'praise'
+    >>> account.pin
+    '1234'
+    >>> account._balance
+    0
+    """
 
     def __init__(self, name: str, pin: str, number: int):
         self.name = name
