@@ -8,3 +8,7 @@ class Diaries:
 
     def getNumberOfDiaries(self):
         return self.numberOfDiaries
+
+    def delete(self, param, param1):
+        self.numberOfDiaries -= 1
+
