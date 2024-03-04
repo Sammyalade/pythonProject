@@ -15,6 +15,9 @@ class Diary:
     def get_username(self):
         return self.username
 
+    def get_password(self):
+        return self.password
+
     def lock_diary(self):
         self.is_locked = True
 
@@ -28,7 +31,7 @@ class Diary:
             self.number_of_entries += 1
             self.entries.append(Entry(self.number_of_entries, "First Entry", "This is my first entry"))
 
-    def delete_entry(self, id):
+    def delete_entry(self, i_d):
         if self.is_locked:
             raise DiaryIsLockedError
         elif self.number_of_entries == 0:
@@ -37,7 +40,7 @@ class Diary:
             self.entries.remove(self.find_entry(id))
             self.number_of_entries -= 1
 
-    def find_entry(self, id):
+    def find_entry(self, i_d):
         if self.number_of_entries == 0:
             raise DiaryIsEmptyError
         else:
@@ -46,7 +49,7 @@ class Diary:
                     return entry
         raise EntryDoesNotExistError
 
-    def update_entry(self, id, title, body):
+    def update_entry(self, i_d, title, body):
         if self.is_locked:
             raise DiaryIsLockedError
         elif self.number_of_entries == 0:
