@@ -5,10 +5,14 @@ from diary_module.exception.entry_does_not_exist_error import EntryDoesNotExistE
 
 
 class Diary:
-    def __init__(self):
+    def __init__(self, username, password):
+        self.username = username
         self.entries = []
         self.number_of_entries = 0
         self.is_locked = False
+
+    def get_username(self):
+        return self.username
 
     def lock_diary(self):
         self.is_locked = True
