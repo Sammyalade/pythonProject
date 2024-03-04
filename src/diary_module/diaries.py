@@ -16,6 +16,8 @@ class Diaries:
         return self.numberOfDiaries
 
     def delete(self, username, password):
+        for file in self.diaries:
+            if file.username == username and file.password == password:
         self.numberOfDiaries -= 1
 
     def find(self, username):
