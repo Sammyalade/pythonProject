@@ -1,10 +1,10 @@
 class Diaries:
-    
+
     def __init__(self):
-        pass
+        self.numberOfDiaries = 0
 
     def add(self, username, password):
-        pass
+        self.numberOfDiaries += 1
 
     def getNumberOfDiaries(self):
-        pass
+        return self.numberOfDiaries
