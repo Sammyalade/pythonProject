@@ -12,3 +12,6 @@ class Diaries:
     def delete(self, param, param1):
         self.numberOfDiaries -= 1
 
+    def find(self, username):
+        pass
+
