@@ -10,3 +10,11 @@ def count_upper_and_lower_case(sentence):
 
 
 print(count_upper_and_lower_case('Hello world!'))
+
+
+def count_upper_and_lower_case_two(sentence):
+    return {'UPPER CASE': len(list(filter(lambda x: x.isupper(), sentence))),
+            'LOWER CASE': len(list(filter(lambda x: x.islower(), sentence)))}
+
+
+print(count_upper_and_lower_case('Hello world!'))
