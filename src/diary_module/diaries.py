@@ -1,3 +1,6 @@
+from diary_module import diary
+
+
 class Diaries:
 
     def __init__(self):
@@ -13,5 +16,5 @@ class Diaries:
         self.numberOfDiaries -= 1
 
     def find(self, username):
-        pass
+        if diary.username == username:
 
