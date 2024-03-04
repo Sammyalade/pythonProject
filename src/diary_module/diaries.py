@@ -1,3 +1,4 @@
+from account_package.exception.InvalidPinError import InvalidPinError
 from diary_module import diary
 from diary_module.diary import Diary
 
@@ -9,8 +10,13 @@ class Diaries:
         self.numberOfDiaries = 0
 
     def add(self, username, password):
+        for diary_entry in self.diaries:
+            if diary_entry.username == username:
+                raise ValueError("Username is already taken")
         if len(username) == 0:
             raise ValueError("Username is empty")
+        elif len(password) == 0:
+            raise ValueError("Password is empty")
         self.diaries.append(Diary(username, password))
         self.numberOfDiaries += 1
 
@@ -18,14 +24,15 @@ class Diaries:
         return self.numberOfDiaries
 
     def delete(self, username, password):
-        for file in self.diaries:
-            if file.username == username and file.password == password:
-                self.diaries.remove(file)
+        diary_to_delete: Diary = self.find_diaries(username)
+        if diary_to_delete.get_password() != password:
+            raise InvalidPinError("Invalid password")
+        else:
+            self.diaries.remove(diary_to_delete)
         self.numberOfDiaries -= 1
 
-    def find(self, username):
-        for file in self.diaries:
-            if file.username == username:
-                return file
-        raise FileNotFoundError("No such diary")
-
+    def find_diaries(self, username):
+        for diary_entry in self.diaries:
+            if diary_entry.username == username:
+                return diary_entry
+        raise ValueError("No such diary")
