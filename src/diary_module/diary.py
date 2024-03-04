@@ -6,6 +6,7 @@ from diary_module.exception.entry_does_not_exist_error import EntryDoesNotExistE
 
 class Diary:
     def __init__(self, username, password):
+        self.password = password
         self.username = username
         self.entries = []
         self.number_of_entries = 0
