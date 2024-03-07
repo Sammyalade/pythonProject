@@ -23,7 +23,7 @@ class TestDiaries:
         diaries.add("username", "password")
         assert isinstance(diaries.find_diaries("username"), Diary)
 
-    def test_delete_diaries_find_diaries_raises_file_not_found_error(self):
+    def test_delete_diaries_find_diaries_raises_error(self):
         diaries = Diaries()
         diaries.add("username", "password")
         diaries.add("username1", "password1")
