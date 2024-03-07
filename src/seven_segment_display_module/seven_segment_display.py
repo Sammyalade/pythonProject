@@ -61,5 +61,5 @@ class SevenSegmentDisplay:
 
 
 if __name__ == '__main__':
-    segment = SevenSegmentDisplay("111k11")
+    segment = SevenSegmentDisplay("01100001")
     segment.print()
