@@ -6,9 +6,10 @@ class BankAccount:
     def __init__(self, name):
         self.name = name
         self._account_list = []
+        self.count_of_account_number = 1000
 
     def generate_account_number(self):
-        return len(self._account_list) + 1
+        return self.count_of_account_number + 1
 
     def register_account(self, account_name, pin):
         account = Account(account_name, pin, self.generate_account_number())
@@ -18,7 +19,7 @@ class BankAccount:
     def deposit(self, account_number, amount):
         account = self.__find_account(account_number)
         if account is None:
-            raise ValueError(f"Account number not found")
+            raise ValueError("Account number not found")
         else:
             account.deposit(amount)
 
