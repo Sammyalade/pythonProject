@@ -55,9 +55,16 @@ class BankApp:
         first_name = simpledialog.askstring("Bank App", "Enter your first name: ")
         last_name = simpledialog.askstring("Bank App", "Enter your Last Name: ")
         pin = simpledialog.askstring("Bank App", "Set your pin: ")
-        self.bank.register_account(first_name + " " + last_name, pin)
-        messagebox.showinfo("Bank App", "Account successfully registered")
-        self.main_menu()
+        try:
+            self.bank.register_account(first_name + " " + last_name, pin)
+            messagebox.showinfo("Bank App", f"""
+            Account successfully registered.
+            {self.bank.register_account(first_name + " " + last_name, pin)}
+            """)
+        except Exception as e:
+            messagebox.showinfo("Error", f"{e.__repr__()}")
+        finally:
+            self.main_menu()
 
     def deposit_money(self):
         account_number = simpledialog.askinteger("Bank App", "Enter your account number: ")
