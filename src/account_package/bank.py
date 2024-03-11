@@ -8,8 +8,7 @@ class BankAccount:
         self._account_list = []
 
     def generate_account_number(self):
-        account_number = len(self._account_list) + 1
-        return account_number
+        return len(self._account_list) + 1
 
     def register_account(self, account_name, pin):
         account = Account(account_name, pin, self.generate_account_number())
