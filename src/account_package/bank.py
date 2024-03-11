@@ -1,4 +1,3 @@
-from account_package import account_for_bank
 from account_package.account_for_bank import Account
 
 
@@ -15,6 +14,7 @@ class BankAccount:
     def register_account(self, account_name, pin):
         account = Account(account_name, pin, self.generate_account_number())
         self._account_list.append(account)
+        return account
 
     def deposit(self, account_number, amount):
         account = self.__find_account(account_number)
