@@ -147,6 +147,7 @@ class BankApp:
         messagebox.showinfo(self.bank.find_account_by_name(account_name))
 
     def exit_app(self):
+        messagebox.showinfo("Thank you", "Goodbye!")
         exit(0)
 
 
