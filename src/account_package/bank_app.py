@@ -44,6 +44,7 @@ class BankApp:
         pin = input("Set your pin: ")
         self.bank.register_account(first_name + " " + last_name, pin)
         print(f"Account successfully registered")
+
         self.main_menu()
 
     def deposit_money(self):
