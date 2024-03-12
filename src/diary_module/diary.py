@@ -29,7 +29,9 @@ class Diary:
             raise DiaryIsLockedError
         else:
             self.number_of_entries += 1
-            self.entries.append(Entry(self.number_of_entries, "First Entry", "This is my first entry"))
+            entry = Entry(self.number_of_entries, title, body)
+            self.entries.append(entry)
+            return entry
 
     def delete_entry(self, i_d):
         if self.is_locked:
