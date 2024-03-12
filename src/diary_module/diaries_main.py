@@ -57,8 +57,9 @@ class DiariesMain:
     def add_diary(self):
         name = self.take_input("Enter Name: ")
         password = self.take_input("Enter Password: ")
-        self.list_of_diaries.diaries.add(name, password)
+        self.list_of_diaries.add(name, password)
         self.display_message("New Diary Successfully  registered")
+        self.main_menu()
 
     @staticmethod
     def display_message(display):
@@ -73,6 +74,8 @@ class DiariesMain:
             self.display_message(f"{diary.create_entry(title, body)}")
         except Exception as e:
             self.display_message(f"{e.__repr__()}")
+        finally:
+            self.main_menu()
 
     def find_diary(self):
         username = self.take_input("Enter Diary Username: ")
@@ -111,6 +114,7 @@ class DiariesMain:
         try:
             diary: Diary = self.list_of_diaries.find_diaries(username)
             diary.delete_entry(entry_id)
+            self.display_message(f"Entry {entry_id} in Diary {username} successfully deleted")
         except Exception as e:
             self.display_message(f"{e.__repr__()}")
         finally:
@@ -119,9 +123,12 @@ class DiariesMain:
     def check_number_of_diaries(self):
         self.display_message(f"Number of Diaries is {self.list_of_diaries.numberOfDiaries}")
         self.main_menu()
-    @staticmethod
-    def exit_app():
+
+    def exit_app(self):
+        self.display_message("Thank you for using YoUr DiAry")
         exit(0)
 
 
-
+if __name__ == "__main__":
+    diaries_main = DiariesMain()
+    diaries_main.main_menu()
