@@ -1,5 +1,4 @@
 from account_package.exception.InvalidPinError import InvalidPinError
-from diary_module import diary
 from diary_module.diary import Diary
 
 
