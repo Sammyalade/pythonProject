@@ -102,3 +102,78 @@ class TestTicTacToe:
         game.make_move(4)
         game.make_move(7)
         assert game.check_winner() is True
+
+    def test_players_can_win_in_column_2(self, game):
+        game.make_move(2)
+        game.make_move(5)
+        game.make_move(8)
+        assert game.check_winner() is True
+
+    def test_players_can_win_in_column_3(self, game):
+        game.make_move(3)
+        game.make_move(6)
+        game.make_move(9)
+        assert game.check_winner() is True
+
+    def test_players_can_win_in_row(self, game):
+        game.make_move(1)
+        game.make_move(2)
+        game.make_move(3)
+        assert game.check_winner() is True
+
+    def test_players_can_win_in_row_2(self, game):
+        game.make_move(4)
+        game.make_move(5)
+        game.make_move(6)
+        assert game.check_winner() is True
+
+    def test_players_can_win_in_row_3(self, game):
+        game.make_move(7)
+        game.make_move(8)
+        game.make_move(9)
+        assert game.check_winner() is True
+
+    def test_players_can_win_diagonal_1(self, game):
+        game.make_move(1)
+        game.make_move(5)
+        game.make_move(9)
+        assert game.check_winner() is True
+
+    def test_players_can_win_diagonal_2(self, game):
+        game.make_move(3)
+        game.make_move(5)
+        game.make_move(7)
+        assert game.check_winner() is True
+
+    def test_players_can_draw(self, game):
+        game.make_move(1)
+        game.switch_player_turn()
+        game.make_move(2)
+        game.switch_player_turn()
+        game.make_move(6)
+        game.switch_player_turn()
+        game.make_move(3)
+        game.switch_player_turn()
+        game.make_move(5)
+        game.switch_player_turn()
+        game.make_move(9)
+        game.switch_player_turn()
+        game.make_move(4)
+        game.switch_player_turn()
+        game.make_move(7)
+        game.switch_player_turn()
+        game.make_move(8)
+        assert game.is_draw() is True
+
+    def test_player_cannot_play_on_same_cell_twice(self, game):
+        game.make_move(2)
+        with pytest.raises(Exception):
+            game.make_move(2)
+
+    def test_exception_thrown_for_invalid_moves(self, game):
+        with pytest.raises(Exception):
+            game.make_move(19)
+        with pytest.raises(Exception):
+            game.make_move(-10)
+        with pytest.raises(Exception):
+            game.make_move(int("a"))
